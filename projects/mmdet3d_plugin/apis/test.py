@@ -85,8 +85,8 @@ def single_gpu_test(model,
         show_mask_gt = True
 
         if (result[0]['seg_preds'] is not None) and (show or out_dir):
-            car_img = Image.open('/home/guozebin/work_code/BEVFormer/icon/car.png')
-            car_img_cv = cv2.imread('/home/guozebin/work_code/BEVFormer/icon/car.png')
+            car_img = Image.open('/home/jianglu/Documents/BEVFormer_segmentation_detection/icon/car.png')
+            car_img_cv = cv2.imread('/home/jianglu/Documents/BEVFormer_segmentation_detection/icon/car.png')
             semantic = result[0]['seg_preds']
             semantic = onehot_encoding(semantic).cpu().numpy()
 

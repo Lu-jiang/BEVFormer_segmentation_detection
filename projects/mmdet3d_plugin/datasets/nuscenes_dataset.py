@@ -40,7 +40,7 @@ class CustomNuScenesDataset(NuScenesDataset):
         self.map_canvas_size = (canvas_h, canvas_w)
 
         # add seg label
-        self.nusc = NuScenes(version='v1.0-trainval', dataroot=self.data_root, verbose=False)
+        self.nusc = NuScenes(version='v1.0-mini', dataroot=self.data_root, verbose=False)
         self.vector_map = VectorizedLocalMap(
             dataroot=self.map_dataroot,
             patch_size=self.map_patch_size,

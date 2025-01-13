@@ -36,7 +36,7 @@ def mask_for_lines(lines, mask, thickness, idx, type='index', angle_class=36):
         coords = np.flip(coords, 0)
 
     if type == 'index':
-        cv2.polylines(mask, [coords], False, color=idx, thickness=thickness)
+        cv2.polylines(mask, [coords], False, color=idx, thickness=thickness)    # 在mask上绘制线条，颜色为idx，线条粗细为thickness
         idx += 1
     else:
         for i in range(len(coords) - 1):
@@ -87,12 +87,12 @@ def overlap_filter(mask, filter_mask):
     for c in range(C-1, -1, -1):
         filter = np.repeat((filter_mask[c] != 0)[None, :], c, axis=0)
         mask[:c][filter] = 0
-
+    # 过滤消除一些重叠部分，mask表示不同类别的分割结果，filter_mask消除不同之间的重叠部分，确保最终结果的准确性和唯一性
     return mask
 
 
 def preprocess_map(vectors, patch_size, canvas_size, max_channel, thickness, angle_class):
-    confidence_levels = [-1]
+    confidence_levels = [-1]    # # 初始化一个包含 -1 的列表，用于表示置信度水平
     vector_num_list = {}
     for i in range(max_channel):
         vector_num_list[i] = []

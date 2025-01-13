@@ -54,8 +54,8 @@ _dim_ = 256
 _pos_dim_ = _dim_//2
 _ffn_dim_ = _dim_*2
 _num_levels_ = 1
-bev_h_ = 150
-bev_w_ = 150
+bev_h_ = 50
+bev_w_ = 30 
 queue_length = 3 # each sequence contains `queue_length` frames.
 
 model = dict(
@@ -174,7 +174,8 @@ model = dict(
             pc_range=point_cloud_range))))
 
 dataset_type = 'CustomNuScenesDataset'
-data_root = 'data/nuscenes/'
+# data_root = 'data/nuscenes/'
+data_root = '/home/jianglu/Documents/MapTR/data/nuscenes/'
 file_client_args = dict(backend='disk')
 
 
@@ -217,7 +218,7 @@ test_pipeline = [
 
 data = dict(
     samples_per_gpu=1,
-    workers_per_gpu=4,
+    workers_per_gpu=0,
     train=dict(
         type=dataset_type,
         data_root=data_root,

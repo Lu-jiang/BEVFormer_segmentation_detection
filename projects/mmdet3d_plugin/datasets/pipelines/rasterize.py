@@ -27,22 +27,22 @@ class RasterizeMapVectors(object):
                  map_angle_class=36
                  ):
 
-        self.map_max_channel = map_max_channel
-        self.map_thickness = map_thickness
-        self.map_angle_class = map_angle_class
+        self.map_max_channel = map_max_channel      # 3
+        self.map_thickness = map_thickness          # 5
+        self.map_angle_class = map_angle_class      # 36
 
         map_xbound, map_ybound = map_grid_conf['xbound'], map_grid_conf['ybound']
 
         # patch_size: 在 y, x 方向上的坐标 range
-        patch_h = map_ybound[1] - map_ybound[0]
-        patch_w = map_xbound[1] - map_xbound[0]
+        patch_h = map_ybound[1] - map_ybound[0]     # 30    
+        patch_w = map_xbound[1] - map_xbound[0]     # 60
 
         # canvas_size: 在 y, x 方向上的 bev 尺寸
-        canvas_h = int(patch_h / map_ybound[2])
-        canvas_w = int(patch_w / map_xbound[2])
+        canvas_h = int(patch_h / map_ybound[2])     # 200
+        canvas_w = int(patch_w / map_xbound[2])     # 400
 
-        self.map_patch_size = (patch_h, patch_w)
-        self.map_canvas_size = (canvas_h, canvas_w)
+        self.map_patch_size = (patch_h, patch_w)    # (30, 60)
+        self.map_canvas_size = (canvas_h, canvas_w) # (200, 400)
 
     def __call__(self, results):
         vectors = results['vectors']

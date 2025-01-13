@@ -29,3 +29,17 @@ and we provide another script to train BEVFormer with FP16.
 # Visualization 
 
 see [visual.py](../tools/analysis_tools/visual.py)
+
+# Visual
+## 运行debug_test.py (you should floow me.)
+
+'''
+python debug_test.py --config $config_path --checkpoint $ckpt_path --show-dir $seg_result_save_path
+'''
+
+## 运行visual_det_seg.py
+
+'''
+python visual_det_seg.py
+注意更改该python文件中的pred_seg_path =$seg_result_save_path
+'''

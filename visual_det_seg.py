@@ -29,7 +29,7 @@ cams = ['CAM_FRONT',
  'CAM_FRONT_LEFT']
 
 
-pred_seg_path = '/home/binze/work_code/BEVFormer/visual_small_seg_det'
+pred_seg_path = '/home/jianglu/Documents/BEVFormer_segmentation_detection/tmp_test'
 
 det_grid_conf = {
     'xbound': [-51.2, 51.2, 0.68],
@@ -517,12 +517,17 @@ def render_sample_data(
 
 
 if __name__ == '__main__':
-    nusc = NuScenes(version='v1.0-trainval', dataroot='/home/binze/work_code/BEVFormer/data/nuscenes', verbose=True)
+    nusc = NuScenes(version='v1.0-mini', dataroot='/home/jianglu/Documents/MapTR/data/nuscenes', verbose=True)
     # render_annotation('7603b030b42a4b1caa8c443ccc1a7d52')
     seg_list = set(filter(lambda x: "gt" not in x, os.listdir(pred_seg_path)))
 
 
-    bevformer_results = mmcv.load('/home/binze/work_code/BEVFormer/test/bevformer_small_seg_det/Fri_Feb_10_10_46_01_2023/pts_bbox/results_nusc.json')
-    sample_token_list = list(bevformer_results['results'].keys())[1000:2000]
-    for id in range(0, 1000):
-        render_sample_data(sample_token_list[id], pred_data=bevformer_results, out_path=f"/home/binze/work_code/BEVFormer/visual_res_small/{sample_token_list[id]}", seg_list=seg_list)
+    bevformer_results = mmcv.load('/home/jianglu/Documents/BEVFormer_segmentation_detection/test/bevformer_base_seg_det_150x150/Tue_Jan_14_15_50_06_2025/pts_bbox/results_nusc.json')
+    sample_token_list = list(bevformer_results['results'].keys())
+    print(f"sample_token_list len={len(sample_token_list)}")
+    # print(sample_token_list)
+    # sample_token_list = sample_token_list[1000:2000]
+    print(f"sample_token_list len={len(sample_token_list)}")
+    for id in range(0, len(sample_token_list)):
+    # for id in range(0, 1000):
+        render_sample_data(sample_token_list[id], pred_data=bevformer_results, out_path=f"/home/jianglu/Documents/BEVFormer_segmentation_detection/visual_work_dir/{sample_token_list[id]}", seg_list=seg_list)

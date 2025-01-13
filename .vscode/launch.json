@@ -1,0 +1,38 @@
+{
+    // debug train.py
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python bevformer_seg debug",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "tools/train.py",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "pythonPath": "/home/jianglu/Downloads/yes/envs/bevformer/bin/python",
+            "args": ["projects/configs/bevformer/bevformer_small_seg.py",
+            // "args": ["projects/configs/bevformer/bevformer_base_seg_det_150x150.py",
+                     "--gpus", "1", 
+                     "--no-validate"]
+
+        }
+
+        // // debug create_data.py
+        // // python tools/data_converter/nuscenes_converter.py --data-root /home/jianglu/Documents/MapTR/data/nuscenes --newsplit -v v1.0-mini
+        // {
+        //     "name": "Python: stream create_data",
+        //     "type": "debugpy",
+        //     "request": "launch",
+        //     "program": "tools/data_converter/nuscenes_converter.py",
+        //     "console": "integratedTerminal",
+        //     "justMyCode": false,
+        //     "env": {
+        //         "PYTHONPATH": "/home/jianglu/Downloads/yes/envs/stream/bin/python"
+        //     },
+        //     "args": ["--data-root", "/home/jianglu/Documents/MapTR/data/nuscenes",
+        //              "--newsplit",
+        //              "--version", "v1.0-mini"]
+        // }
+    ]
+
+}

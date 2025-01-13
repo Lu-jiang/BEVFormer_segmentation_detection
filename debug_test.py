@@ -4,7 +4,7 @@
 #  Modified by Zhiqi Li
 # ---------------------------------------------
 import sys
-sys.path.insert(0, '/home/guozebin/work_code/BEVFormer/')
+sys.path.insert(0, '/home/jianglu/Documents/BEVFormer_segmentation_detection')
 import os
 os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 import argparse
@@ -31,8 +31,8 @@ import os.path as osp
 def parse_args():
     parser = argparse.ArgumentParser(
         description='MMDet test (and eval) a model')
-    parser.add_argument('--config', default='projects/configs/bevformer/bevformer_small_seg_det.py', help='test config file path')
-    parser.add_argument('--checkpoint', default='ckpts/epoch_18.pth', help='checkpoint file')
+    parser.add_argument('--config', default='projects/configs/bevformer/bevformer_base_seg_det_150x150.py', help='test config file path')
+    parser.add_argument('--checkpoint', default='ckpts/bevformer_base_seg_det_150.pth', help='checkpoint file')
     parser.add_argument('--out', help='output result file in pickle format')
     parser.add_argument(
         '--fuse-conv-bn',
@@ -53,7 +53,7 @@ def parse_args():
         help='evaluation metrics, which depends on the dataset, e.g., "bbox",'
         ' "segm", "proposal" for COCO, and "mAP", "recall" for PASCAL VOC')
     parser.add_argument('--show', action='store_true', help='show results')
-    parser.add_argument('--show-dir', default='/home/guozebin/work_code/BEVFormer/visual_small_seg_det', help='directory where results will be saved')
+    parser.add_argument('--show-dir', default='/home/jianglu/Documents/BEVFormer_segmentation_detection/visual_work_dir', help='directory where results will be saved')
     #parser.add_argument('--show-dir', default=None, help='directory where results will be saved')
     parser.add_argument(
         '--gpu-collect',
