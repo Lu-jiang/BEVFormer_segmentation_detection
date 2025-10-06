@@ -43,10 +43,32 @@ def show_seg(labels, car_img):
     return img
 
 def onehot_encoding(logits, dim=1):
+    """
+    定义一个名为 onehot_encoding 的函数，该函数接受两个参数：
+    logits: 输入的张量，通常是模型输出的原始分数
+    dim: 进行独热编码操作的维度，默认值为 1
+    """
     max_idx = torch.argmax(logits, dim, keepdim=True)
+    """
+    使用 torch.argmax 函数在指定的 dim 维度上找出 logits 张量中每个样本的最大值所在的索引。
+    keepdim=True 表示保持结果的维度与输入张量在非操作维度上一致，方便后续的 scatter_ 操作。
+    例如，若 logits 形状为 (batch_size, num_classes)，dim=1，则 max_idx 的形状为 (batch_size, 1)。
+    """
     one_hot = logits.new_full(logits.shape, 0)
+    """
+    使用 logits.new_full 方法创建一个与 logits 形状相同的新张量 one_hot，并将所有元素初始化为 0。
+    logits.new_full 会确保新张量与 logits 在相同的设备（如 CPU 或 GPU）上。
+    """
     one_hot.scatter_(dim, max_idx, 1)
+    """
+    使用 scatter_ 函数进行原地操作，将 one_hot 张量中由 max_idx 指定的位置的值设为 1。
+    dim 是操作的维度，max_idx 是索引张量，1 是要填充的值。
+    例如，对于每个样本，会根据 max_idx 中的索引在 one_hot 张量的相应位置设置为 1。
+    """
     return one_hot
+    """
+    返回经过独热编码后的 one_hot 张量。
+    """
 
 
 def single_gpu_test(model,
@@ -350,3 +372,15 @@ def collect_results_cpu(result_part, size, tmpdir=None):
 def collect_results_gpu(result_part, size):
     return collect_results_cpu(result_part, size)
 
+if __name__ == '__main__':
+    # 定义一个输入的 logits 张量
+    logits = torch.tensor([[1.2, 3.4, 2.1],
+                        [0.5, 0.2, 0.9]])
+
+    # 调用 onehot_encoding 函数进行独热编码
+    one_hot = onehot_encoding(logits, dim=1)
+
+    print("原始 logits 张量:")
+    print(logits)
+    print("独热编码后的张量:")
+    print(one_hot)

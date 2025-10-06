@@ -49,7 +49,7 @@ _ffn_dim_ = _dim_*2
 _num_levels_ = 4
 bev_h_ = 150
 bev_w_ = 150
-queue_length = 4  # each sequence contains `queue_length` frames.
+queue_length = 2  # each sequence contains `queue_length` frames.
 
 
 model = dict(
@@ -199,7 +199,7 @@ train_pipeline = [
     dict(type='PhotoMetricDistortionMultiViewImage'),
     dict(type='LoadAnnotations3D', with_bbox_3d=True, with_label_3d=True, with_attr_label=False),
     # convert map labels
-    dict(type='RasterizeMapVectors', map_grid_conf=map_grid_conf),
+    dict(type='RasterizeMapVectors', map_grid_conf=map_grid_conf),  # 光栅化地图
     dict(type='ObjectRangeFilter', point_cloud_range=point_cloud_range),
     dict(type='ObjectNameFilter', classes=class_names),
     dict(type='NormalizeMultiviewImage', **img_norm_cfg),
@@ -230,7 +230,7 @@ test_pipeline = [
 
 data = dict(
     samples_per_gpu=1,
-    workers_per_gpu=1,
+    workers_per_gpu=0,
     train=dict(
         type=dataset_type,
         data_root=data_root,

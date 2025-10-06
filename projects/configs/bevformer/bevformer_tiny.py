@@ -170,7 +170,8 @@ model = dict(
             pc_range=point_cloud_range))))
 
 dataset_type = 'CustomNuScenesDataset'
-data_root = 'data/nuscenes/'
+# data_root = 'data/nuscenes/'
+data_root = '/home/jianglu/Documents/MapTR/data/nuscenes/'
 file_client_args = dict(backend='disk')
 
 
@@ -208,8 +209,8 @@ test_pipeline = [
 ]
 
 data = dict(
-    samples_per_gpu=2,
-    workers_per_gpu=4,
+    samples_per_gpu=1,
+    workers_per_gpu=0,
     train=dict(
         type=dataset_type,
         data_root=data_root,

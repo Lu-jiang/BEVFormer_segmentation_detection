@@ -9,13 +9,28 @@
             "program": "tools/train.py",
             "console": "integratedTerminal",
             "justMyCode": false,
-            "pythonPath": "/home/jianglu/Downloads/yes/envs/bevformer/bin/python",
-            "args": ["projects/configs/bevformer/bevformer_small_seg.py",
-            // "args": ["projects/configs/bevformer/bevformer_base_seg_det_150x150.py",
+            "pythonPath": "/home/jianglu/miniconda3/envs/open-mmlab/bin/python",
+            // "args": ["projects/configs/bevformer/bevformer_small_seg.py",
+            "args": ["projects/configs/bevformer/bevformer_base_seg_det_150x150.py",
                      "--gpus", "1", 
-                     "--no-validate"]
+                     "--no-validate",
+                     "--resume-from", "/home/jianglu/Documents/BEVFormer_segmentation_detection/ckpts/bevformer_base_seg_det_150.pth",]
 
         }
+
+        // {
+        //     "name": "Python bevformer_seg test",
+        //     "type": "debugpy",
+        //     "request": "launch",
+        //     "program": "debug_test.py",
+        //     "console": "integratedTerminal",
+        //     "justMyCode": false,
+        //     "pythonPath": "/home/jianglu/Downloads/yes/envs/bevformer/bin/python",
+        //     // "args": ["projects/configs/bevformer/bevformer_small_seg.py",
+        //     "args": [" --config", "projects/configs/bevformer/bevformer_base_seg_det_150x150.py",
+        //              "--checkpoint", "/home/jianglu/Documents/BEVFormer_segmentation_detection/ckpts/bevformer_base_seg_det_150.pth",
+        //              "--show-dir", "./result"]
+        // }
 
         // // debug create_data.py
         // // python tools/data_converter/nuscenes_converter.py --data-root /home/jianglu/Documents/MapTR/data/nuscenes --newsplit -v v1.0-mini
